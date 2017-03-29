@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"長庚大學 大數據分析方法 作業三\"\noutput: github_document\n---\n\n\n    \n\n## 網站資料爬取\n```{r}\nlibrary(rvest) \nPTT<-\"https://www.ptt.cc/bbs/NBA/index4628.html\"\nPTTContent<-read_html(PTT)\npost_title <- PTTContent %>% html_nodes(\".title\") %>% html_text() \npost_title\npost_pushnum <- PTTContent %>% html_nodes(\".nrec\") %>% html_text() \npost_pushnum\npost_author <- PTTContent %>% html_nodes(\".author\") %>% html_text() \npost_author\n\nPTT1<-\"https://www.ptt.cc/bbs/NBA/index4627.html\"\nPTTContent1<-read_html(PTT1)\npost_title1 <- PTTContent1 %>% html_nodes(\".title\") %>% html_text() \npost_title1\npost_pushnum1 <- PTTContent1 %>% html_nodes(\".nrec\") %>% html_text() \npost_pushnum1\npost_author1 <- PTTContent1 %>% html_nodes(\".author\") %>% html_text() \npost_author1\n\nPTT2<-\"https://www.ptt.cc/bbs/NBA/index4626.html\"\nPTTContent2<-read_html(PTT2)\npost_title2 <- PTTContent2 %>% html_nodes(\".title\") %>% html_text() \npost_title2\npost_pushnum2 <- PTTContent2 %>% html_nodes(\".nrec\") %>% html_text() \npost_pushnum2\npost_author2 <- PTTContent2 %>% html_nodes(\".author\") %>% html_text() \npost_author2\n\nPTT3<-\"https://www.ptt.cc/bbs/NBA/index4625.html\"\nPTTContent3<-read_html(PTT3)\npost_title3 <- PTTContent3 %>% html_nodes(\".title\") %>% html_text() \npost_title3\npost_pushnum3 <- PTTContent3 %>% html_nodes(\".nrec\") %>% html_text() \npost_pushnum3\npost_author3 <- PTTContent3 %>% html_nodes(\".author\") %>% html_text() \npost_author3\n\nPTT4<-\"https://www.ptt.cc/bbs/NBA/index4624.html\"\nPTTContent4<-read_html(PTT4)\npost_title4 <- PTTContent4 %>% html_nodes(\".title\") %>% html_text() \npost_title4\npost_pushnum4 <- PTTContent4 %>% html_nodes(\".nrec\") %>% html_text() \npost_pushnum4\npost_author4 <- PTTContent4 %>% html_nodes(\".author\") %>% html_text() \npost_author4\n\nPTT5<-\"https://www.ptt.cc/bbs/NBA/index4623.html\"\nPTTContent5<-read_html(PTT5)\npost_title5 <- PTTContent5 %>% html_nodes(\".title\") %>% html_text() \npost_title5\npost_pushnum5 <- PTTContent5 %>% html_nodes(\".nrec\") %>% html_text() \npost_pushnum5\npost_author5 <- PTTContent5 %>% html_nodes(\".author\") %>% html_text() \npost_author5\n\n\n\nNBAdataframe <- data.frame(Title=c(post_title), PushNum=c(post_pushnum), Author=c(post_author))\nNBAdataframe\n\nNBAdataframe1 <- data.frame(Title=c(post_title1), PushNum=c(post_pushnum1), Author=c(post_author1))\nNBAdataframe1\n\nNBAdataframe2 <- data.frame(Title=c(post_title2), PushNum=c(post_pushnum2), Author=c(post_author2))\nNBAdataframe2\n\nNBAdataframe3 <- data.frame(Title=c(post_title3), PushNum=c(post_pushnum3), Author=c(post_author3))\nNBAdataframe3\n\nNBAdataframe4 <- data.frame(Title=c(post_title4), PushNum=c(post_pushnum4), Author=c(post_author4))\nNBAdataframe4\n\nNBAdataframe5 <- data.frame(Title=c(post_title5), PushNum=c(post_pushnum5), Author=c(post_author5))\nNBAdataframe5\n\n\n\ndataframeAll<-rbind(NBAdataframe,NBAdataframe1,NBAdataframe2,NBAdataframe3,NBAdataframe4,NBAdataframe5)\ndataframeAll\n##read_html\n##html_nodes\n##html_text\n```\n\n## 爬蟲結果呈現\n```{r}\nknitr::kable(\n    dataframeAll[1:100,c(\"Title\",\"PushNum\",\"Author\")])\n```\n\n## 解釋爬蟲結果 \n```{r}\ndim(dataframeAll)\n```\n共爬120個標題，有Title , PushNum , Author 這三個欄位\n\n\n```{r}\ntable(dataframeAll$Author)\n```\n\n作者Rambo  文章數是23篇\n\n因為我不會運用for迴圈，後來研究了很久發現可以連續複製好幾次就可以爬到很多筆了!\n",
+    "created" : 1490795036367.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1318483020",
+    "id" : "5C1C4535",
+    "lastKnownWriteTime" : 1490796207,
+    "last_content_update" : 1490796207110,
+    "path" : "C:/Users/candy/Desktop/cguim-bigdata-hw3-yilingmao/README.Rmd",
+    "project_path" : "README.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

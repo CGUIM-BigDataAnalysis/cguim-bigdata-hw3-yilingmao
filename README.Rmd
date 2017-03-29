@@ -3,45 +3,90 @@ title: "長庚大學 大數據分析方法 作業三"
 output: github_document
 ---
 
-## 作業說明 （繳交時請直接刪除這個章節）
-
-作業目的：練習初級爬蟲，並將爬蟲結果整理成資料框data.frame
-
-依下列指示，完成網站內文分析：
-
-- 爬取指定網站內容
-    - 學號結尾 0,4,8:[Ptt Tech_Job 版](https://www.ptt.cc/bbs/Tech_Job/index.html)
-    - 學號結尾 1,5,9:[Ptt NBA 版](https://www.ptt.cc/bbs/NBA/index.html)
-    - 學號結尾 2,6:[Ptt LoL 版](https://www.ptt.cc/bbs/LoL/index.html)
-    - 學號結尾 3,7:[Ptt movie 版](https://www.ptt.cc/bbs/movie/index.html)
-    
-- 試著爬出**至少100篇**文章（`30pt`）的**標題**、**推文數**與**作者ID**（各`10pt`）
-    - 資料框欄位名稱：
-        - **標題**：Title
-        - **推文數**：PushNum
-        - **作者ID**：Author
-    - 一頁只有20篇，該怎麼辦？
-        - 提示：使用for + rbind()將分批爬取出的資料結合
-        - 範例：dataframeAll<-rbind(dataframe1,dataframe2) 
-        - 參考：[6.6 資料組合](http://yijutseng.github.io/DataScienceRBook/manipulation.html#section-6.6)
-    
-- 將爬取出的資料輸出至Markdown報告中（`10pt`）
-    - 使用knitr::kable(資料框物件)整理輸出
-    
-- 用文字搭配程式碼解釋爬蟲結果 
-    - 共爬出幾篇文章標題？（程式碼與文字解釋各`5pt`）
-        - dim(), nrow(), str()皆可
-    - 哪個作者文章數最多？（程式碼與文字解釋各`5pt`）
-        - table()
-    - 其他爬蟲結果解釋（`10pt`）
-        - 試著找出有趣的現象，不一定要用程式碼搭配解釋，也可只用文字
 
     
 
 ## 網站資料爬取
 ```{r}
-#這是R Code Chunk
-library(rvest) ##第一次使用要先安裝 install.packages("rvest")
+library(rvest) 
+PTT<-"https://www.ptt.cc/bbs/NBA/index4628.html"
+PTTContent<-read_html(PTT)
+post_title <- PTTContent %>% html_nodes(".title") %>% html_text() 
+post_title
+post_pushnum <- PTTContent %>% html_nodes(".nrec") %>% html_text() 
+post_pushnum
+post_author <- PTTContent %>% html_nodes(".author") %>% html_text() 
+post_author
+
+PTT1<-"https://www.ptt.cc/bbs/NBA/index4627.html"
+PTTContent1<-read_html(PTT1)
+post_title1 <- PTTContent1 %>% html_nodes(".title") %>% html_text() 
+post_title1
+post_pushnum1 <- PTTContent1 %>% html_nodes(".nrec") %>% html_text() 
+post_pushnum1
+post_author1 <- PTTContent1 %>% html_nodes(".author") %>% html_text() 
+post_author1
+
+PTT2<-"https://www.ptt.cc/bbs/NBA/index4626.html"
+PTTContent2<-read_html(PTT2)
+post_title2 <- PTTContent2 %>% html_nodes(".title") %>% html_text() 
+post_title2
+post_pushnum2 <- PTTContent2 %>% html_nodes(".nrec") %>% html_text() 
+post_pushnum2
+post_author2 <- PTTContent2 %>% html_nodes(".author") %>% html_text() 
+post_author2
+
+PTT3<-"https://www.ptt.cc/bbs/NBA/index4625.html"
+PTTContent3<-read_html(PTT3)
+post_title3 <- PTTContent3 %>% html_nodes(".title") %>% html_text() 
+post_title3
+post_pushnum3 <- PTTContent3 %>% html_nodes(".nrec") %>% html_text() 
+post_pushnum3
+post_author3 <- PTTContent3 %>% html_nodes(".author") %>% html_text() 
+post_author3
+
+PTT4<-"https://www.ptt.cc/bbs/NBA/index4624.html"
+PTTContent4<-read_html(PTT4)
+post_title4 <- PTTContent4 %>% html_nodes(".title") %>% html_text() 
+post_title4
+post_pushnum4 <- PTTContent4 %>% html_nodes(".nrec") %>% html_text() 
+post_pushnum4
+post_author4 <- PTTContent4 %>% html_nodes(".author") %>% html_text() 
+post_author4
+
+PTT5<-"https://www.ptt.cc/bbs/NBA/index4623.html"
+PTTContent5<-read_html(PTT5)
+post_title5 <- PTTContent5 %>% html_nodes(".title") %>% html_text() 
+post_title5
+post_pushnum5 <- PTTContent5 %>% html_nodes(".nrec") %>% html_text() 
+post_pushnum5
+post_author5 <- PTTContent5 %>% html_nodes(".author") %>% html_text() 
+post_author5
+
+
+
+NBAdataframe <- data.frame(Title=c(post_title), PushNum=c(post_pushnum), Author=c(post_author))
+NBAdataframe
+
+NBAdataframe1 <- data.frame(Title=c(post_title1), PushNum=c(post_pushnum1), Author=c(post_author1))
+NBAdataframe1
+
+NBAdataframe2 <- data.frame(Title=c(post_title2), PushNum=c(post_pushnum2), Author=c(post_author2))
+NBAdataframe2
+
+NBAdataframe3 <- data.frame(Title=c(post_title3), PushNum=c(post_pushnum3), Author=c(post_author3))
+NBAdataframe3
+
+NBAdataframe4 <- data.frame(Title=c(post_title4), PushNum=c(post_pushnum4), Author=c(post_author4))
+NBAdataframe4
+
+NBAdataframe5 <- data.frame(Title=c(post_title5), PushNum=c(post_pushnum5), Author=c(post_author5))
+NBAdataframe5
+
+
+
+dataframeAll<-rbind(NBAdataframe,NBAdataframe1,NBAdataframe2,NBAdataframe3,NBAdataframe4,NBAdataframe5)
+dataframeAll
 ##read_html
 ##html_nodes
 ##html_text
@@ -49,21 +94,21 @@ library(rvest) ##第一次使用要先安裝 install.packages("rvest")
 
 ## 爬蟲結果呈現
 ```{r}
-#這是R Code Chunk
-knitr::kable(iris) ##請將iris取代為上個步驟中產生的爬蟲資料資料框
+knitr::kable(
+    dataframeAll[1:100,c("Title","PushNum","Author")])
 ```
 
 ## 解釋爬蟲結果 
 ```{r}
-#這是R Code Chunk
+dim(dataframeAll)
 ```
+共爬120個標題，有Title , PushNum , Author 這三個欄位
 
-解釋解釋解釋解釋
 
 ```{r}
-#這是R Code Chunk
+table(dataframeAll$Author)
 ```
 
-解釋解釋解釋解釋
+作者Rambo  文章數是23篇
 
-人工結論與解釋解釋解釋解釋解釋解釋解釋
+因為我不會運用for迴圈，後來研究了很久發現可以連續複製好幾次就可以爬到很多筆了!
